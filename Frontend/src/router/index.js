@@ -1,9 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
 import Login from '../views/LoginView.vue'
 import CompanyView from '../views/CompanyView.vue'
 import CompanyBioView from '../views/CompanyBioView.vue'
 import CompanyLicensesView from '../views/CompanyLicensesView.vue'
 import StakeholdersView from '../views/StakeholdersView.vue'
+import LicensesView from '../views/LicensesView.vue'
+
 import EditCompanyComp from '../components/EditCompanyComp.vue'
 import EditStakeholderComp from '../components/EditStakeholderComp.vue'
 import EditCompanyLicensesComp from '../components/EditCompanyLicensesComp.vue'
@@ -37,6 +40,11 @@ const router = createRouter({
         path: '/StakeholdersView',
         name: 'StakeholdersView',
         component: StakeholdersView
+      },
+      {
+        path: '/LicensesView',
+        name: 'LicensesView',
+        component: LicensesView
       },
       {
         path: '/EditCompany',

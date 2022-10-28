@@ -14,7 +14,7 @@
                     <td>{{ license.licenseCost }}</td>
                     <td>
                         <span>
-                            <router-link :to="{name: 'EditLicense'}" class="btn btn-warning btn-sm action-btn">Edit</router-link>
+                            <router-link :to="{name: 'EditLicenseComp'}" class="btn btn-warning btn-sm action-btn">Edit</router-link>
                             <button @click.prevent="deletelicense(license._id)" class="btn btn-danger mx-2 btn-sm action-btn">Delete</button>
                         </span>
                     </td>

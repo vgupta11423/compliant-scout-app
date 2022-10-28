@@ -13,7 +13,7 @@
                 <tr class="companylicenses" v-for="companyLicense in companyLicenses" :key="companyLicense._id">
                     <td>{{ companyLicense.licenseStatus }}</td>
                     <td>{{ companyLicense.licenseStatusDate }}</td>
-                    <td><router-link :to="{name: 'CompanyLicensesView'}" class="btn btn-primary btn-sm action-btn">License Info</router-link></td>
+                    <td><router-link :to="{name: 'LicensesView'}" class="btn btn-primary btn-sm action-btn">License Info</router-link></td>
                     <td>
                         <span>
                             <router-link :to="{name: 'EditCompanyLicensesComp'}" class="btn btn-warning btn-sm action-btn">Edit</router-link>
