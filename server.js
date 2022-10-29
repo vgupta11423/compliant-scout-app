@@ -29,7 +29,7 @@ db.sequelize.sync()
 
 // simple test route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application" });
+  res.json({ message: "Welcome to the application" });
 });
 
 require("./app/routes/user.routes")(app);

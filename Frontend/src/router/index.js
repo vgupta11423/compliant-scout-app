@@ -2,7 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Login from '../views/LoginView.vue'
 import CompanyView from '../views/CompanyView.vue'
-import CompanyBioView from '../views/CompanyBioView.vue'
+import CompanyBioLeasedView from '../views/CompanyBioLeasedView.vue'
+import CompanyBioOwnedView from '../views/CompanyBioOwnedView.vue'
 import CompanyLicensesView from '../views/CompanyLicensesView.vue'
 import StakeholdersView from '../views/StakeholdersView.vue'
 import LicensesView from '../views/LicensesView.vue'
@@ -27,9 +28,14 @@ const router = createRouter({
         component: CompanyView
       },
       {
-        path: '/CompanyBioView',
-        name: 'CompanyBioView',
-        component: CompanyBioView
+        path: '/CompanyBioLeasedView',
+        name: 'CompanyBioLeasedView',
+        component: CompanyBioLeasedView
+      },
+      {
+        path: '/CompanyBioOwnedView',
+        name: 'CompanyBioOwnedView',
+        component: CompanyBioOwnedView
       },
       {
         path: '/CompanyLicensesView',

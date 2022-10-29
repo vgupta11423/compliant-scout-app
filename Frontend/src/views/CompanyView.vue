@@ -31,7 +31,8 @@
                     <td>{{ company.email }}</td>
                     <td>{{ company.locationName }}</td>
                     <td>{{ company.phoneNumber }}</td>
-                    <td><router-link :to="{name: 'CompanyBioView'}" class="btn btn-primary btn-sm action-btn">Company Bio</router-link></td>
+                    <td v-if="company.owned"><router-link :to="{name: 'CompanyBioOwnedView'}" class="btn btn-primary btn-sm action-btn">Company Bio</router-link></td>
+                    <td v-else="!company.owned"><router-link :to="{name: 'CompanyBioLeasedView'}" class="btn btn-primary btn-sm action-btn">Company Bio</router-link></td>
                     <td><router-link :to="{name: 'CompanyLicensesView'}" class="btn btn-primary btn-sm action-btn">Company Licenses</router-link></td>
                     <td><router-link :to="{name: 'StakeholdersView'}" class="btn btn-primary btn-sm action-btn">Company Stakeholders</router-link></td>
                     <td>
@@ -47,11 +48,13 @@
 </template>
 
 <script>
+//import CompanyController from "../app/controllers/company.controller.js";
+
   export default {
     data() {
       return {
-        Companies: [
-          { id: 40, name: 'Bobs Hardware', address: '123 Rose Boulevard', mailAddress: 'test1', city: 'Houston', county: 'county1', ein: '1234', email: 'bob@bobshardware.com', locationName: 'test1', phoneNumber: '(123) 333-2255' },
+         Companies: [
+          { id: 40, name: 'Bobs Hardware', address: '123 Rose Boulevard', mailAddress: 'test1', city: 'Houston', county: 'county1', ein: '1234', email: 'bob@bobshardware.com', locationName: 'test1', phoneNumber: '(123) 333-2255', owned: true },
           { id: 21, name: 'Toms Computer', address: '345 Adair Lane', mailAddress: 'test1', city: 'Austin', county: 'county2', ein: '3456', email: 'tom@tomscomputer.com', locationName: 'test1', phoneNumber: '(321) 111-4488' },
           { id: 89, name: 'Willows Bookstore', address: '555 Pond Terrace', mailAddress: 'test1', city: 'Dallas', county: 'county3', ein: '5678', email: 'willow@willowsbookstore.com', locationName: 'test1', phoneNumber: '(111) 888-6677' },
           { id: 38, name: 'Jennas Salon', address: '777 Priscilla Loop', mailAddress: 'test1', city: 'San Antonio', county: 'county4', ein: '7890', email: 'jenna@jennassalon.com', locationName: 'test1', phoneNumber: '(222) 999-5544' },
@@ -63,8 +66,21 @@
           { id: 21, name: 'Toms Computer', address: '345 Adair Lane', mailAddress: 'test1', city: 'Austin', county: 'county2', ein: '3456', email: 'tom@tomscomputer.com', locationName: 'test1', phoneNumber: '(321) 111-4488' },
           { id: 89, name: 'Willows Bookstore', address: '555 Pond Terrace', mailAddress: 'test1', city: 'Dallas', county: 'county3', ein: '5678', email: 'willow@willowsbookstore.com', locationName: 'test1', phoneNumber: '(111) 888-6677' },
           { id: 38, name: 'Jennas Salon', address: '777 Priscilla Loop', mailAddress: 'test1', city: 'San Antonio', county: 'county4', ein: '7890', email: 'jenna@jennassalon.com', locationName: 'test1', phoneNumber: '(222) 999-5544' }
-        ]
+        ] 
+        //companies: []
       }
+    },
+    methods: {
+        retrieveTutorials() {
+          CompanyController.findAll()
+        .then(response => {
+          this.companies = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
     }
   }
 </script>
