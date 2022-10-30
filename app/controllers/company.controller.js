@@ -27,7 +27,7 @@ exports.create = (req, res) => {
     c_mailAddress: req.body.c_mailAddress,
     c_name: req.body.c_name,
     c_phoneNumber: req.body.c_phoneNumber,
-    //c_owned: req.body.c_owned,
+    c_owned: req.body.c_owned,
   };
 
   // Save the created Company to the DB

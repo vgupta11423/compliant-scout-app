@@ -32,9 +32,9 @@ module.exports = (sequelize, Sequelize) => {
     c_phoneNumber: {
       type: Sequelize.STRING
     }, 
-    /* c_owned: {
+    c_owned: {
       type: Sequelize.BOOLEAN
-    }, */
+    }, 
   }, {
     // This tells Sequelize to not infer with the given table name
     // of company_info. W/o this it turns into company_infos
