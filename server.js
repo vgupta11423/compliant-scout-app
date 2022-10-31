@@ -8,7 +8,11 @@ var corsOptions = {
   origin: "http://localhost:8081" // only requests from "http://localhost:8081" will be allowed
 };
 
-app.use(cors(corsOptions));
+// This allows requests only from the domain inside corsOptions
+//app.use(cors(corsOptions));
+
+// This allows requests from any domain
+app.use(cors());
 
 // parse requests of content-type -> application/json
 app.use(express.json())
