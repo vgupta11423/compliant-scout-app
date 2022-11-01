@@ -7,11 +7,11 @@ const app = express();
 
 var corsOptions = {
   // origin configures the Access-Control-Allow-Origin CORS header (https://expressjs.com/en/resources/middleware/cors.html#configuration-options)
-  origin: "http://localhost:8081" // only requests from "http://localhost:8081" will be allowed
+  origin: "http://localhost:5173" // only requests from "http://localhost:8081" will be allowed
 };
 
 const authConfig = {
-  authRequired: true,
+  authRequired: false,
   auth0Logout: true,
   secret: '0538a9fc49ce93df98b1d924b56f7380f71e211c7a00e5ee5b4727cb8eec8cae',
   baseURL: 'http://localhost:8080',
@@ -37,10 +37,10 @@ const db = require("./app/models")
 db.sequelize.sync()
   .then(() => {
     console.log("Synced db.");
-})
+  })
   .catch((err) => {
     console.log("Failed to sync db: " + err.message)
-});
+  });
 
 //Root route of the application that redirects the user to the the companies list page.
 app.get("/", (req, res) => {
