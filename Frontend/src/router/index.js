@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Login from '../views/LoginView.vue'
+import IntakeFormView from '../views/IntakeFormView.vue'
 import CompanyView from '../views/CompanyView.vue'
 import CompanyBioLeasedView from '../views/CompanyBioLeasedView.vue'
 import CompanyBioOwnedView from '../views/CompanyBioOwnedView.vue'
@@ -21,7 +22,12 @@ const router = createRouter({
         path: '/login',
         name: 'login',
         component: Login
-      }, 
+      },
+      {
+        path: '/IntakeForm',
+        name: 'IntakeFormView',
+        component: IntakeFormView
+      },
       {
         path: '/companies',
         name: 'companyview',
