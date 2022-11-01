@@ -2,7 +2,7 @@
 <div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand float-left" href="/">Compliant Scout App</a>
+    <a class="navbar-brand float-left" href="/">Compliance Scout LLC App</a>
     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
       <ul class="nav navbar-nav navbar-right">
         <li class="nav-item">
@@ -27,4 +27,3 @@
   
 
   </style>
-
