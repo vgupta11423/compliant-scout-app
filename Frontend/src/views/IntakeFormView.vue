@@ -4,6 +4,7 @@
         <h3 class="text-center">Client Intake Form</h3>
             <form @submit.prevent="handleSubmitForm">
                 <form class="row g-3">
+                    <!-- Basic Information of the Business Section -->
                     <div class="formsection">
                         <h4>Basic Information</h4>
                     </div>
@@ -66,6 +67,7 @@
                         </div>
                     </div>
                     <br>
+                    <!-- Stakeholder Section -->
                     <div class="formsection">
                         <h4>Stakeholder Information</h4>
                     </div>
@@ -123,35 +125,101 @@
                         </div>
                     </div>
                     <br>
-                    <div class="form-group required">
-                        <label><strong>Spouse</strong></label>
-                        <select v-model="spouseOption" class="form-select" required>
-                            <option :value="null" selected disabled>Do you have a spouse?</option>
-                            <option value="yes">Yes</option>
-                            <option>No</option>
-                        </select>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label><strong>Spouse First Name</strong></label>
+                            <input type="text" class="form-control">
+                        </div>
                     </div>
-                    <div v-show="spouseOption === 'yes'">
-                        <div class="row g-3">
-                            <div class="col-md-6">
+                    <br>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label><strong>Spouse Last Name</strong></label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <br>
+                    <!-- Adding More Stakeholders -->
+                    <div class="col-12">
+                        <button @click="addStakeholder" class="btn btn-primary">Add Stakeholder</button>
+                        <div class="previous"
+                            v-for="(stakeholder, counter) in stakeholders"
+                            v-bind:key="counter">
+                            
+                            <span @click="deleteStakeholder(counter)">x</span>
+                            <div class="row g-3">
+                            <div class="col-md-5">
                                 <div class="form-group required">
+                                    <label><strong>First Name</strong></label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-md-5">
+                                <div class="form-group required">
+                                    <label><strong>Last Name</strong></label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-md-2">
+                                <div class="form-group required">
+                                    <label><strong>Title</strong></label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-md-8">
+                                <div class="form-group required">
+                                    <label><strong>Place of Birth</strong></label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-md-4">
+                                <div class="form-group required">
+                                    <label><strong>Date of Birth</strong></label>
+                                    <input type="date" class="form-control" required>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group required">
+                                <label><strong>Address</strong></label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <br>
+                            <div class="col-md-8">
+                                <div class="form-group required">
+                                    <label><strong>Email</strong></label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-md-4">
+                                <div class="form-group required">
+                                    <label><strong>Percentage Ownership</strong></label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label><strong>Spouse First Name</strong></label>
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <br>
                             <div class="col-md-6">
-                                <div class="form-group required">
+                                <div class="form-group">
                                     <label><strong>Spouse Last Name</strong></label>
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-12">
-                        <button class="btn btn-primary">Add Stakeholder</button>
-                    </div>
                     <br>
+                    <!-- Business Information Section -->
                     <div class="formsection">
                         <h4>Business Information</h4>
                     </div>
@@ -237,7 +305,16 @@
         data() {
             return {
                 leaseOption: null,
-                spouseOption: null
+                stakeholders: []
+            }
+        },
+        methods : {
+            addStakeholder(){
+                this.stakeholders.push({
+                })
+            },
+            deleteStakeholder(counter){
+                this.stakeholders.splice(counter,1);
             }
         }
     }
@@ -250,9 +327,26 @@
         padding: 2px;
     }
     .col-md-7 {
-        border: 2px solid rgba(174, 174, 174, 0.5);
+        border: 2px solid;
         border-radius: 10px;
         border-spacing: 1em 0.5em;
-        padding: 1em 0 1em 0;
+        padding: 1em 0 1.5em 0;
+    }
+    span {
+        width: 30px;
+        float: right;
+        cursor: pointer;
+        text-align: right;
+        padding-right: 7px;
+    }
+    span:hover {
+        color: brown;
+    }
+    .previous {
+        border: 1.5px solid rgba(35, 35, 35, 0.5);
+        border-radius: 4px;
+        padding: 10px;
+        margin-top: 20px;
+        margin-bottom: 10px;
     }
 </style>
