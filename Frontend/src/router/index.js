@@ -58,7 +58,7 @@ const router = createRouter({
         component: EditCompanyComp
       },
       {
-        path: '/EditStakeholder',
+        path: '/EditStakeholder/:s_id',
         name: 'edit-stakeholder',
         component: EditStakeholderComp
       },

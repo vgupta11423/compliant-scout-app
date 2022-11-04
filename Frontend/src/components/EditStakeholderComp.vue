@@ -2,29 +2,52 @@
   <div class="row justify-content-center">
       <div class="col-md-6">
           <h3 class="text-center">Edit Stakeholder</h3>
-          <form @submit.prevent="">
+          <form @submit.prevent="handleUpdateForm">
+            <div class="form-group">
+                  <label>Stakeholder ID</label>
+                  <input type="text" class="form-control"  v-model="Stakeholder.s_id">
+              </div>
               <div class="form-group">
                   <label>First Name</label>
-                  <input type="text" class="form-control"  v-model="stakeholder.s_firstName">
+                  <input type="text" class="form-control"  v-model="Stakeholder.s_firstName">
               </div>
               <div class="form-group">
                   <label>Last Name</label>
-                  <input type="text" class="form-control" v-model="stakeholder.s_lastName" required>
+                  <input type="text" class="form-control" v-model="Stakeholder.s_lastName" required>
               </div>
               <div class="form-group">
                   <label>Title</label>
-                  <input type="text" class="form-control" v-model="stakeholder.s_title" required>
+                  <input type="text" class="form-control" v-model="Stakeholder.s_title" required>
+              </div>
+              <div class="form-group">
+                  <label>DOB</label>
+                  <input type="text" class="form-control" v-model="Stakeholder.s_dob" required>
+              </div>
+              <div class="form-group">
+                  <label>Place of Birth</label>
+                  <input type="text" class="form-control" v-model="Stakeholder.s_place_of_birth" required>
+              </div>
+              <div class="form-group">
+                  <label>Address</label>
+                  <input type="text" class="form-control" v-model="Stakeholder.s_address" required>
+              </div>
+              <div class="form-group">
+                  <label>Email</label>
+                  <input type="text" class="form-control" v-model="Stakeholder.s_email" required>
+              </div>
+              <div class="form-group">
+                  <label>Spouse First Name</label>
+                  <input type="text" class="form-control" v-model="Stakeholder.s_spouse_firstName" required>
+              </div>
+              <div class="form-group">
+                  <label>Spouse Last Name</label>
+                  <input type="text" class="form-control" v-model="Stakeholder.s_spouse_lastName" required>
+              </div>
+              <div class="form-group">
+                  <label>Personal Funds Invested</label>
+                  <input type="text" class="form-control" v-model="Stakeholder.s_personal_funds_invested" required>
               </div>
 
-
-              <!-- If there are anything in the error list - display those errors. -->
-              <p v-if="errors.length">
-                  <br>
-                  <b>Please correct the following error(s):</b>
-                  <ul>
-                      <li v-for="error in errors" :key="error">{{ error }} </li>
-                  </ul>
-              </p>
               <button type="submit" class="btn btn-danger mt-3">Update</button>
           </form>
       </div>
@@ -37,34 +60,29 @@
   export default {
     data() {
       return {
-        errors: [],
-        stakeholder: { }
+        Stakeholder: {},
       }
     },
     created() {
-      let apiURL = `http://localhost:8080/api/stakeholders/${this.$route.params.id}`
+      let apiURL = `http://localhost:8080/api/stakeholders/${this.$route.params.s_id}`
 
+      // Fills out fields with current data
       axios.get(apiURL).then((res) => {
-        console.log(res.data)
+        this.Stakeholder = res.data
       })
+    },
+    methods: {
+      handleUpdateForm() {
+        let apiURL =`http://localhost:8080/api/stakeholders/${this.$route.params.s_id}`
+        // Put the new data into the db using the API URL
+        axios.put(apiURL, this.Stakeholder).then((res) => {
+          this.$router.push(`/companies`)
+        }).catch(error => {
+          console.log(error)
+        })
+      }
     }
   }
 
-  // export default {
-  //   data() {
-  //     return {
-  //       errors: [],
-  //       // Stakeholder object
-  //       stakeholder: { }
-  //     }
-  //   },
-  //   created() {
-  //     let apiURL = `http://localhost:8080/api/stakeholders/${this.$route.params.id}`;
 
-  //     // Fills out the fields with the stakeholder's current data
-  //     axios.get(apiURL).then((res) => {
-  //       this.stakeholder = res.data
-  //     })
-  //   }
-  // }
 </script>
