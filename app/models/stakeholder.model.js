@@ -17,6 +17,9 @@ module.exports = (sequelize, Sequelize) => {
       // This tells Sequelize s_id is the pk of this table
       primaryKey: true,
     },
+    c_id: {
+      type: Sequelize.STRING
+    },
     s_lastName: {
       type: Sequelize.STRING
     },
