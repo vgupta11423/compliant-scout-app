@@ -1,9 +1,9 @@
 module.exports = (sequelize, Sequelize) => {
   const Company_license = sequelize.define("company_licenses", {
-    c_id: { 
+    c_id: { // FK in db
       type: Sequelize.STRING,
     },
-    license_id: { // will act as PK
+    license_id: { // will act as PK // FK in db
       type: Sequelize.STRING,
       primaryKey: true,
     },

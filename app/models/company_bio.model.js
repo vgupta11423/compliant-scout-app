@@ -1,5 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
   const Company_bio = sequelize.define("company_bio", {
+    // TODO : use this as PK
     c_id: { // this is the foreign key
       type: Sequelize.STRING,
     },

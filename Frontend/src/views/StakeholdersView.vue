@@ -36,7 +36,7 @@
                     <td>{{ stakeholder.s_personal_funds_invested }}</td>
                     <td>
                         <span>
-                            <router-link :to="{name: 'EditStakeholderComp'}" class="btn btn-warning btn-sm action-btn">Edit</router-link>
+                            <router-link :to="{name: 'edit-stakeholder', params: { id: stakeholder.s_id }}" class="btn btn-warning btn-sm action-btn">Edit</router-link>
                             <button @click.prevent="deleteStakeholder(stakeholder.s_id)" class="btn btn-danger mx-2 btn-sm action-btn">Delete</button>
                         </span>
                     </td>
