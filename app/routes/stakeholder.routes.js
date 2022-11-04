@@ -14,6 +14,9 @@ module.exports = app => {
   // Endpoint that will create a new stakeholder
   router.post("/", stakeholders.create);
 
+  // Endpoint that will get all stakeholders under with the provided c_id
+  router.get("/company/:c_id", stakeholders.findStakeholders);
+
   // Endpoint that will retrieve all stakeholders
   router.get("/", stakeholders.findAll)
 

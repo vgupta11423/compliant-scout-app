@@ -5,6 +5,19 @@ const db = require("../models");
 const Stakeholder = db.stakeholders;
 const Op = db.Sequelize.Op;
 
+// Get all Stakeholders that have specified c_id
+exports.findStakeholders = (req, res) => {
+  Stakeholder.findAll({ where: {c_id: req.params.c_id} })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || `An error occured while retrieving the stakeholders for company w/ c_id: ${req.params.c_id}.`
+      });
+    });
+};
+
 // Create and Save a new Stakeholder
 exports.create = (req, res) => {
   // Validate request by making sure email isn't empty

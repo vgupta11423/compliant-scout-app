@@ -43,7 +43,7 @@ const router = createRouter({
         component: CompanyLicensesView
       },
       {
-        path: '/StakeholdersView',
+        path: '/StakeholdersView/:c_id',
         name: 'StakeholdersView',
         component: StakeholdersView
       },
@@ -58,8 +58,8 @@ const router = createRouter({
         component: EditCompanyComp
       },
       {
-        path: '/EditStakeholder',
-        name: 'EditStakeholderComp',
+        path: '/EditStakeholder/:s_id',
+        name: 'edit-stakeholder',
         component: EditStakeholderComp
       },
       {

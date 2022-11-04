@@ -78,6 +78,19 @@ exports.findOne = (req, res) => {
     });
 };
 
+// Find the company_bio of a company with the given c_id
+exports.findCompanyBio = (req, res) => {
+  Company_bio.findAll({ where: {c_id: req.params.c_id} })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || `An error occured while retrieving the company_bio for company w/ c_id: ${req.params.c_id}.`
+      });
+    });
+};
+
 // Update a Company_bio by the property_owner_ein in the request
 exports.update = (req, res) => {
   const property_owner_ein = req.params.property_owner_ein;

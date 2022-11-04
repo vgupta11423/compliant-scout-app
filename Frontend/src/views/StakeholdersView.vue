@@ -3,6 +3,8 @@
         <table class="table table-hover table-striped table-bordered">
             <thead>
                 <tr class="table-dark">
+                    <th class="sticky-header">Stakeholder ID</th>
+                    <th class="sticky-header">Company ID</th>
                     <th class="sticky-header">First Name</th>
                     <th class="sticky-header">Last Name</th>
                     <th class="sticky-header">Title</th>
@@ -10,32 +12,34 @@
                     <th class="sticky-header">Place of Birth</th>
                     <th class="sticky-header">Address</th>
                     <th class="sticky-header">Email</th>
-                    <th class="sticky-header">Percent Ownership</th>
+                    <!-- <th class="sticky-header">Percent Ownership</th> -->
                     <th class="sticky-header">Spouse First Name</th>
                     <th class="sticky-header">Spouse Last Name</th>
-                    <th class="sticky-header">Loan Invested</th>
+                    <!-- <th class="sticky-header">Loan Invested</th> -->
                     <th class="sticky-header">Personal Funds Invested</th>
                     <th class="sticky-header">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="stakeholders" v-for="stakeholder in stakeholders" :key="stakeholder._id">
-                    <td>{{ stakeholder.firstName }}</td>
-                    <td>{{ stakeholder.lastName }}</td>
-                    <td>{{ stakeholder.title }}</td>
-                    <td>{{ stakeholder.dob }}</td>
-                    <td>{{ stakeholder.placeOfBirth }}</td>
-                    <td>{{ stakeholder.address }}</td>
-                    <td>{{ stakeholder.email }}</td>
-                    <td>{{ stakeholder.percentOwnership }}</td>
-                    <td>{{ stakeholder.spouseFirstName }}</td>
-                    <td>{{ stakeholder.spouseLastName }}</td>
-                    <td>{{ stakeholder.loanInvested }}</td>
-                    <td>{{ stakeholder.personalFundsInvested }}</td>
+                    <td>{{ stakeholder.s_id }}</td>
+                    <td>{{ stakeholder.c_id }}</td>
+                    <td>{{ stakeholder.s_firstName }}</td>
+                    <td>{{ stakeholder.s_lastName }}</td>
+                    <td>{{ stakeholder.s_title }}</td>
+                    <td>{{ stakeholder.s_dob }}</td>
+                    <td>{{ stakeholder.s_place_of_birth }}</td>
+                    <td>{{ stakeholder.s_address }}</td>
+                    <td>{{ stakeholder.s_email }}</td>
+                    <!-- <td>{{ stakeholder.percentOwnership }}</td> -->
+                    <td>{{ stakeholder.s_spouse_firstName }}</td>
+                    <td>{{ stakeholder.s_spouse_lastName }}</td>
+                    <!-- <td>{{ stakeholder.loanInvested }}</td> -->
+                    <td>{{ stakeholder.s_personal_funds_invested }}</td>
                     <td>
                         <span>
-                            <router-link :to="{name: 'EditStakeholderComp'}" class="btn btn-warning btn-sm action-btn">Edit</router-link>
-                            <button @click.prevent="deletestakeholder(stakeholder._id)" class="btn btn-danger mx-2 btn-sm action-btn">Delete</button>
+                            <router-link :to="{name: 'edit-stakeholder', params: { s_id: stakeholder.s_id }}" class="btn btn-warning btn-sm action-btn">Edit</router-link>
+                            <button @click.prevent="deleteStakeholder(stakeholder.s_id)" class="btn btn-danger mx-2 btn-sm action-btn">Delete</button>
                         </span>
                     </td>
                 </tr>
@@ -45,12 +49,35 @@
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
         data() {
             return {
-                stakeholders: [
-                    { firstName: 'John', lastName: 'Doe', title: 'Sr. Manager', dob: '1988/04/19', placeOfBirth: 'Texas, USA', address: '5454 River Lane', email: 'john@johndoe.com', percentOwnership: '9%', spouseFirstName: 'Jane', spouseLastName: 'Doe', loanInvested: 1000, personalFundsInvested: 500 }
-                ]
+                stakeholders: []
+            }
+        },
+        created() {
+            console.log(this.$route.params.c_id)
+            let apiURL = `http://localhost:8080/api/stakeholders/company/${this.$route.params.c_id}`;
+            axios.get(apiURL).then(res => {
+                this.stakeholders = res.data;
+            }).catch(error => {
+                console.log(error)
+            })
+        },
+        methods: {
+            deleteStakeholder(s_id) {
+                let apiURL = `http://localhost:8080/api/stakeholders/${s_id}`
+                let indexOfArrayItem = this.stakeholders.findIndex(i => i.s_id === s_id)
+
+                if (window.confirm("Do you really want to delete?")) {
+                    // Call to delete the stakeholder using the API
+                    axios.delete(apiURL).then(() => {
+                        this.stakeholders.splice(indexOfArrayItem, 1)
+                    }).catch(error => {
+                        console.log(error)
+                    })
+                }
             }
         }
     }
