@@ -20,6 +20,9 @@ module.exports = app => {
   // Endpoint that will retrieve a single company_bio with the given property_owner_ein
   router.get("/:property_owner_ein", company_bios.findOne);
 
+  // Endpoint that gets a companies bio using the companies c_id
+  router.get("/company/:c_id", company_bios.findCompanyBio)
+
   // Endpoint that will update a company_bio with the given  property_owner_ein
   router.put("/:property_owner_ein", company_bios.update);
 
