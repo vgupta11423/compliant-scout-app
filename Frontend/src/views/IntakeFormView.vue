@@ -146,7 +146,7 @@
                             v-for="(stakeholder, counter) in stakeholders"
                             v-bind:key="counter">
                             
-                            <span @click="deleteStakeholder(counter)">x</span>
+                            <span id="deletebtn" @click="deleteStakeholder(counter)">x</span>
                             <div class="row g-3">
                             <div class="col-md-5">
                                 <div class="form-group required">
@@ -332,7 +332,7 @@
         border-spacing: 1em 0.5em;
         padding: 1em 0 1.5em 0;
     }
-    span {
+    #deletebtn {
         width: 30px;
         float: right;
         cursor: pointer;
