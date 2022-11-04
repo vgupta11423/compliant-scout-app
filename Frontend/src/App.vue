@@ -9,7 +9,7 @@
             <router-link to="/login" class="nav-link">Login</router-link>
         </li>
         <li class="nav-item">
-            <router-link to="/companies" class="nav-link">Companies</router-link>
+            <router-link to="/api/companies" class="nav-link">Companies</router-link>
         </li>
       </ul>
     </div>

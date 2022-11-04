@@ -10,15 +10,6 @@ var corsOptions = {
   origin: "http://localhost:5173" // only requests from "http://localhost:8081" will be allowed
 };
 
-const authConfig = {
-  authRequired: false,
-  auth0Logout: true,
-  secret: '0538a9fc49ce93df98b1d924b56f7380f71e211c7a00e5ee5b4727cb8eec8cae',
-  baseURL: 'http://localhost:8080',
-  clientID: 'scYhXsl2UlnnBbb4yhu0jqYqpDpTLt2S',
-  issuerBaseURL: 'https://dev-wwndubckva1cfmd7.us.auth0.com'
-};
-
 //Middleware
 app.use(cors(corsOptions));
 

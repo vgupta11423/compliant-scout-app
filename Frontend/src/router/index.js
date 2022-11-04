@@ -23,12 +23,12 @@ const router = createRouter({
         component: Login
       }, 
       {
-        path: '/companies',
-        name: 'companyview',
+        path: '/api/companies',
+        name: 'CompanyView',
         component: CompanyView
       },
       {
-        path: '/CompanyBioLeasedView',
+        path: '/api/company_bios/:id',
         name: 'CompanyBioLeasedView',
         component: CompanyBioLeasedView
       },
@@ -53,7 +53,7 @@ const router = createRouter({
         component: LicensesView
       },
       {
-        path: '/EditCompany',
+        path: '/EditCompany/:id',
         name: 'EditCompanyComp',
         component: EditCompanyComp
       },
@@ -73,7 +73,7 @@ const router = createRouter({
         component: EditLicenseComp
       },
       {
-        path: '/EditCompanyBio',
+        path: '/EditCompanyBio/:id',
         name: 'EditCompanyBio',
         component: EditCompanyBioComp
       }

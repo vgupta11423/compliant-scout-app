@@ -76,7 +76,27 @@ exports.findOne = (req, res) => {
         message: err.message || `Error retrieving Company_bio with property_owner_ein of ` + property_owner_ein
       });
     });
-};
+}; 
+
+/* exports.findOne = (req, res) => {
+  const c_id = req.params.c_id;
+
+  Company_bio.findByPk(c_id)
+    .then(data => {
+      if (data) {
+        res.send(data);
+      } else {
+        res.status(404).send({
+          message: `Cannot find Company_bio with c_id of: ${c_id}.`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || `Error retrieving Company_bio with c_id of ` + c_id
+      });
+    });
+}; */
 
 // Update a Company_bio by the property_owner_ein in the request
 exports.update = (req, res) => {
@@ -103,6 +123,30 @@ exports.update = (req, res) => {
     });
 };
 
+/* exports.update = (req, res) => {
+  const c_id = req.params.c_id;
+
+  Company_bio.update(req.body, {
+    where: { c_id: c_id }
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: "Company_bio was successfully updated."
+        });
+      } else {
+        res.send({
+          message: `Can't update Company_bio with c_id: ${c_id}. Maybe Company_bio was not found or req.body is empty!`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || "Error updating Company_bio with c_id: " + c_id
+      });
+    });
+}; */
+
 // Delete a Company_bio with the specified property_owner_ein in the request
 exports.delete = (req, res) => {
   const property_owner_ein = req.params.property_owner_ein;
@@ -127,6 +171,30 @@ exports.delete = (req, res) => {
       });
     });
 };
+
+/* exports.delete = (req, res) => {
+  const c_id = req.params.c_id;
+
+  Company_bio.destroy({
+    where: { c_id: c_id }
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: "Company_bio was deleted successfully!"
+        });
+      } else {
+        res.send({
+          message: `Can't delete Company_bio with c_id of ${c_id}. Maybe Company_bio was not found!`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || "Could not delete Company_bio with c_id " + c_id
+      });
+    });
+}; */
 
 // Delete a Company_bio with the specified property_owner_company in the request
 exports.deleteByName = (req, res) => {

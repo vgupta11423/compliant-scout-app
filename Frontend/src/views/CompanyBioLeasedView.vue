@@ -15,13 +15,13 @@
             </thead>
             <tbody>
                 <tr class="companybio" v-for="companyBio in companyBios" :key="companyBio._id">
-                    <td>{{ companyBio.firstDateOp }}</td>
-                    <td>{{ companyBio.purchasePrice }}</td>
-                    <td>{{ companyBio.purchaseDate }}</td>
-                    <td>{{ companyBio.leaseExpDate }}</td>
+                    <td>{{ companyBio.first_date_op }}</td>
+                    <td>{{ companyBio.purchase_price }}</td>
+                    <td>{{ companyBio.purchase_date }}</td>
+                    <td>{{ companyBio.lease_exp_date }}</td>
                     <td>{{ companyBio.rent }}</td>
-                    <td>{{ companyBio.propertyOwnerCompany }}</td>
-                    <td>{{ companyBio.propertyOwnerEIN }}</td>
+                    <td>{{ companyBio.property_owner_company }}</td>
+                    <td>{{ companyBio.property_owner_ein }}</td>
                     <td>
                         <span>
                             <router-link :to="{name: 'EditCompanyBio'}" class="btn btn-warning btn-sm action-btn">Edit</router-link>
@@ -35,10 +35,12 @@
 </template>
 
 <script>
+import axios from "axios";
+
     export default {
         data() {
             return {
-                companyBios: [
+                 /*companyBios: [
                     { firstDateOp: '2022/01/17', purchasePrice: 50, purchaseDate: '2022/05/25', leaseExpDate: '2022/06/23', rent: 1099, propertyOwnerCompany: 'Owner Company Test', propertyOwnerEIN: 1234 },
                     { firstDateOp: '2022/01/17', purchasePrice: 50, purchaseDate: '2022/05/25', leaseExpDate: '2022/06/23', rent: 1099, propertyOwnerCompany: 'Owner Company Test', propertyOwnerEIN: 1234 },
                     { firstDateOp: '2022/01/17', purchasePrice: 50, purchaseDate: '2022/05/25', leaseExpDate: '2022/06/23', rent: 1099, propertyOwnerCompany: 'Owner Company Test', propertyOwnerEIN: 1234 },
@@ -51,8 +53,18 @@
                     { firstDateOp: '2022/01/17', purchasePrice: 50, purchaseDate: '2022/05/25', leaseExpDate: '2022/06/23', rent: 1099, propertyOwnerCompany: 'Owner Company Test', propertyOwnerEIN: 1234 },
                     { firstDateOp: '2022/01/17', purchasePrice: 50, purchaseDate: '2022/05/25', leaseExpDate: '2022/06/23', rent: 1099, propertyOwnerCompany: 'Owner Company Test', propertyOwnerEIN: 1234 },
                     { firstDateOp: '2022/01/17', purchasePrice: 50, purchaseDate: '2022/05/25', leaseExpDate: '2022/06/23', rent: 1099, propertyOwnerCompany: 'Owner Company Test', propertyOwnerEIN: 1234 },
-                ]
+                ] */
+                companyBios: []
             }
+        },
+        created() {
+          let apiURL = `http://localhost:8080/api/company_bios/${this.$route.params.id}`;
+          axios.get(apiURL).then(res => {
+            this.companyBios = res.data
+            //console.log(this.companyBios)
+          }).catch(error => {
+              console.log(error)
+          });
         }
     }
 </script>
