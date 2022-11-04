@@ -3,6 +3,7 @@
         <table class="table table-hover table-striped table-bordered">
             <thead>
                 <tr class="table-dark">
+                    <th class="sticky-header">ID</th>
                     <th class="sticky-header">First Name</th>
                     <th class="sticky-header">Last Name</th>
                     <th class="sticky-header">Title</th>
@@ -20,6 +21,7 @@
             </thead>
             <tbody>
                 <tr class="stakeholders" v-for="stakeholder in stakeholders" :key="stakeholder._id">
+                    <td>{{ stakeholder.s_id }}</td>
                     <td>{{ stakeholder.s_firstName }}</td>
                     <td>{{ stakeholder.s_lastName }}</td>
                     <td>{{ stakeholder.s_title }}</td>
@@ -35,7 +37,7 @@
                     <td>
                         <span>
                             <router-link :to="{name: 'EditStakeholderComp'}" class="btn btn-warning btn-sm action-btn">Edit</router-link>
-                            <button @click.prevent="deletestakeholder(stakeholder._id)" class="btn btn-danger mx-2 btn-sm action-btn">Delete</button>
+                            <button @click.prevent="deleteStakeholder(stakeholder.s_id)" class="btn btn-danger mx-2 btn-sm action-btn">Delete</button>
                         </span>
                     </td>
                 </tr>
@@ -59,6 +61,21 @@
             }).catch(error => {
                 console.log(error)
             })
+        },
+        methods: {
+            deleteStakeholder(s_id) {
+                let apiURL = `http://localhost:8080/api/stakeholders/${s_id}`
+                let indexOfArrayItem = this.stakeholders.findIndex(i => i.s_id === s_id)
+
+                if (window.confirm("Do you really want to delete?")) {
+                    // Call to delete the stakeholder using the API
+                    axios.delete(apiURL).then(() => {
+                        this.stakeholders.splice(indexOfArrayItem, 1)
+                    }).catch(error => {
+                        console.log(error)
+                    })
+                }
+            }
         }
     }
 </script>
