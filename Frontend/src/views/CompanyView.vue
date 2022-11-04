@@ -3,7 +3,7 @@
       <table class="table table-hover table-striped table-bordered">
           <thead>
               <tr class="table-dark">
-                  <th class="sticky-header">ID</th>
+                  <th class="sticky-header">Company ID</th>
                   <th class="sticky-header">Name</th>
                   <th class="sticky-header">Address</th>
                   <th class="sticky-header">Mail Address</th>
@@ -20,7 +20,7 @@
               </tr>
           </thead>
           <tbody>
-              <tr class="companyinfo" v-for="company in companies" :key="company._id">
+              <tr class="companyinfo" v-for="company in Companies" :key="company._id">
                   <td>{{ company.c_id }}</td>
                   <td>{{ company.c_name }}</td>
                   <td>{{ company.c_address }}</td>
@@ -34,7 +34,7 @@
                   <td v-if="company.c_owned"><router-link :to="{name: 'CompanyBioOwnedView'}" class="btn btn-primary btn-sm action-btn">Company Bio</router-link></td>
                   <td v-else="!company.c_owned"><router-link :to="{name: 'CompanyBioLeasedView'}" class="btn btn-primary btn-sm action-btn">Company Bio</router-link></td>
                   <td><router-link :to="{name: 'CompanyLicensesView'}" class="btn btn-primary btn-sm action-btn">Company Licenses</router-link></td>
-                  <td><router-link :to="{name: 'StakeholdersView'}" class="btn btn-primary btn-sm action-btn">Company Stakeholders</router-link></td>
+                  <td><router-link :to="{name: 'StakeholdersView', params: {c_id: company.c_id}}" class="btn btn-primary btn-sm action-btn">Company Stakeholders</router-link></td>
                   <td>
                       <span>
                           <router-link :to="{name: 'EditCompanyComp'}" class="btn btn-warning btn-sm action-btn">Edit</router-link>
@@ -68,13 +68,13 @@ export default {
         { id: 89, name: 'Willows Bookstore', address: '555 Pond Terrace', mailAddress: 'test1', city: 'Dallas', county: 'county3', ein: '5678', email: 'willow@willowsbookstore.com', locationName: 'test1', phoneNumber: '(111) 888-6677' },
         { id: 38, name: 'Jennas Salon', address: '777 Priscilla Loop', mailAddress: 'test1', city: 'San Antonio', county: 'county4', ein: '7890', email: 'jenna@jennassalon.com', locationName: 'test1', phoneNumber: '(222) 999-5544' }
       ]  */
-      companies: []
+      Companies: []
     }
   },
   created() {
         let apiURL = 'http://localhost:8080/api/companies'
         axios.get(apiURL).then(res => {
-          this.companies = res.data
+          this.Companies = res.data
         }).catch(error => {
             console.log(error)
         });

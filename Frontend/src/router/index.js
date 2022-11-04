@@ -43,7 +43,7 @@ const router = createRouter({
         component: CompanyLicensesView
       },
       {
-        path: '/StakeholdersView',
+        path: '/StakeholdersView/:c_id',
         name: 'StakeholdersView',
         component: StakeholdersView
       },

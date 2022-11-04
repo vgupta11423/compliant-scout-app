@@ -3,7 +3,8 @@
         <table class="table table-hover table-striped table-bordered">
             <thead>
                 <tr class="table-dark">
-                    <th class="sticky-header">ID</th>
+                    <th class="sticky-header">Stakeholder ID</th>
+                    <th class="sticky-header">Company ID</th>
                     <th class="sticky-header">First Name</th>
                     <th class="sticky-header">Last Name</th>
                     <th class="sticky-header">Title</th>
@@ -22,6 +23,7 @@
             <tbody>
                 <tr class="stakeholders" v-for="stakeholder in stakeholders" :key="stakeholder._id">
                     <td>{{ stakeholder.s_id }}</td>
+                    <td>{{ stakeholder.c_id }}</td>
                     <td>{{ stakeholder.s_firstName }}</td>
                     <td>{{ stakeholder.s_lastName }}</td>
                     <td>{{ stakeholder.s_title }}</td>
@@ -55,7 +57,8 @@
             }
         },
         created() {
-            let apiURL = 'http://localhost:8080/api/stakeholders';
+            console.log(this.$route.params.c_id)
+            let apiURL = `http://localhost:8080/api/stakeholders/company/${this.$route.params.c_id}`;
             axios.get(apiURL).then(res => {
                 this.stakeholders = res.data;
             }).catch(error => {
